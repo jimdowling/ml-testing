@@ -1,0 +1,1 @@
+Replace this line with your Hopsworks API key - https://docs.hopsworks.ai/feature-store-api/latest/integrations/python/#generate-an-api-key 

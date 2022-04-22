@@ -1,6 +1,6 @@
 GeoLite2-City.mmdb
 hops/
-
+*~
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
