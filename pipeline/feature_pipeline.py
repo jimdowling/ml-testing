@@ -3,7 +3,7 @@ import pandas as pd
 from features import ip_features as ipf
 
 
-def connect(featurestore : str) -> hsfs.feature_store.FeatureStore:
+def connect(featurestore : str) -> hsfs.Connection.connection:
     print("Connecting....")
     connection = hsfs.connection(
         host="791bb4a0-bb1c-11ec-8721-7bd8cdac0b54.cloud.hopsworks.ai", # hostname for your Hopsworks cluster
