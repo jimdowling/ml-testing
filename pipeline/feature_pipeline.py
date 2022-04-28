@@ -3,11 +3,11 @@ import pandas as pd
 from features import ip_features as ipf
 
 
-def connect(featurestore : str) -> hsfs.Connection.connection:
+def connect(host: str, project : str) -> hsfs.Connection.connection:
     print("Connecting....")
     connection = hsfs.connection(
-        host="791bb4a0-bb1c-11ec-8721-7bd8cdac0b54.cloud.hopsworks.ai", # hostname for your Hopsworks cluster
-        project=featurestore,
+        host=host,
+        project=project,
         engine="hive",
         secrets_store="local",
         api_key_file="./api-key.txt"
@@ -27,9 +27,9 @@ def read_data(path: str) -> pd.DataFrame:
     return pd.read_csv(path, dtype={'is_attributed': 'bool'}, parse_dates=['click_time'])
 
 
-def run(project: str) : 
+def run(host: str, project: str) : 
     # First, you have to create a project on Hopsworks called 'prod'
-    connection = connect(project)
+    connection = connect(host, project)
     fs = connection.get_feature_store()
     df = read_data("sample-click-logs.csv")
     df = engineer_features(df)
@@ -49,4 +49,4 @@ def run(project: str) :
         fg.save(df)
     connection.close()
 
-run("prod")
+run(host="791bb4a0-bb1c-11ec-8721-7bd8cdac0b54.cloud.hopsworks.ai",project="dev")
